@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <numeric>
 using namespace std;
 
 int main() {
@@ -7,7 +9,8 @@ int main() {
 	vector<int> v;
 	
 	cout << "Ingrese valores: " << endl;
-	for(int i=0;i<15;i++) { 
+	//son 15, puse 5 porque fiaca
+	for(int i=0;i<5;i++) { 
 		int x; cin >> x; v.push_back(x);
 	}
 	
@@ -28,6 +31,17 @@ int main() {
 		cout << *it << " ";
 	}
 	cout << endl;
+	
+	//mostrar el mayor del array 
+	cout << "Maximo: " << *max_element(v.begin(),v.end()) << endl;
+	cout << "Minimo: " << *min_element(v.begin(),v.end()) << endl;
+	
+	int sum = accumulate(v.begin(),v.end(),0);
+	cout << "Suma: " << sum << endl;
+	
+	cout << "Promedio: " << sum/v.size() << endl;
+	
+	//Me falta la mediana
 	
 	return 0;
 }
