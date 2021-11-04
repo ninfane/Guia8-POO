@@ -50,6 +50,12 @@ int main() {
 	cout << endl;
 	
 	//falta el borrado de todas las repeticiones del valor buscado
+	auto it2 = v.begin();
+	remove(it2,it2+v.size(),val);
+	for(int x: v){
+		cout << x << " ";
+	}
+	cout << endl;
 	
 	return 0;
 }
