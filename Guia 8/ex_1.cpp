@@ -2,16 +2,15 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <cstdlib>
 using namespace std;
 
 int main() {
 	
 	vector<int> v;
 	
-	cout << "Ingrese valores: " << endl;
-	//son 15, puse 5 porque fiaca
-	for(int i=0;i<5;i++) { 
-		int x; cin >> x; v.push_back(x);
+	for(int i=0;i<15;i++) { 
+		v.push_back(rand()%101);
 	}
 	
 	//metodos para mostrar, todos funcionan
@@ -36,12 +35,35 @@ int main() {
 	cout << "Maximo: " << *max_element(v.begin(),v.end()) << endl;
 	cout << "Minimo: " << *min_element(v.begin(),v.end()) << endl;
 	
-	int sum = accumulate(v.begin(),v.end(),0);
+	float sum = accumulate(v.begin(),v.end(),0.0);
 	cout << "Suma: " << sum << endl;
-	
 	cout << "Promedio: " << sum/v.size() << endl;
 	
-	//Me falta la mediana
+	//Mediana 
+	sort(v.begin(),v.end());
+	//dos formas de ver la mediana
+	cout << "Mediana: " << v[v.size()/2] << endl;
+	cout << "Mediana: " << *(v.begin()+v.size()/2) << endl; 
+	
+	//Ingresar un valor y buscar 
+	cout << "Ingrese un valor" << endl;
+	int x; cin >> x;
+	
+	auto it = find(v.begin(),v.end(),x);
+	//porque el v.end() no esta incluida, entonces si llega hasta ahi 
+	//es porque ahi no esta
+	//funciona como valor especial para saber que no esta
+	cout << "vector ordenado: " << endl;
+	for(int &x: v){
+		cout << x << " ";
+	}
+	cout << endl;
+	
+	if(it==v.end()){
+		cout << "No esta" << endl;
+	} else { 
+		cout << "Esta en la posicion: " << it-v.begin()+1 << endl;
+	}
 	
 	return 0;
 }
