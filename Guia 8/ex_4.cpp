@@ -2,12 +2,17 @@
 #include <cstdlib>
 #include <algorithm>
 #include <vector>
+#include <tuple>
 using namespace std;
 
+template<typename T>
+void mostrar(const T &v){
+	for(int x : v) cout << x << " ";
+	cout << endl;
+}
+	
 int rand10(){
-	//no me acuerdo como poner el rango del aleatorio jeje
-	//pero es -10 a 10 
-	int r = -1+(rand()%10);
+	int r = (rand()%20)-10;
 	return r;
 }
 	
@@ -22,6 +27,22 @@ bool menor_abs(int a,int b){
 	else return false;
 }
 
+tuple<int*,int> borrar_rep(int v[20]){
+	vector<int> aux;
+	for(int i=0;i<20;i++) { 
+		aux.push_back(*(v+i));
+	}
+	int size = aux.size();
+	auto it_rep = unique(aux.begin(),aux.end());
+	aux.erase(it_rep,aux.end());
+	
+	int *my_new = new int[size];
+	for(int i=0;i<size;i++) { 
+		*(my_new+i) = aux[i];
+	}
+	return make_tuple(my_new,size);
+}
+	
 int main() {
 	
 	int v[20];
@@ -29,29 +50,18 @@ int main() {
 		int x = rand10();
 		*(v+i) = x;
 	}
-	
-	for(int i=0;i<20;i++) { 
-		cout << *(v+i) << " ";
-	}
-	cout << endl;
+	mostrar(v);
 	
 	auto it = v;
 	cout << "Cantidad de pares: " << count_if(it,it+20,es_par) << endl; 
 	
-	//me queda un nro. con signo negativo 
 	sort(it,it+20,menor_abs);
-	for(int &x: v){
-		cout << x << " ";
-	}
-	cout << endl;
+	cout << "Ordenado por valor absoluto: " << endl;
+	mostrar(v);
 	
-	//no se como hacerlo porque el algoritmo no sirve con 
-	//el vector estatico
-	auto it_rep = unique(it,it+20);
-	v.erase(it_rep,it+20);
-	
-	for(int x: v){
-		cout << x << " ";
+	int *v2, size; tie(v2,size) = borrar_rep(v);
+	for(int i=0;i<size;i++) { 
+		cout << *(v2+i) << " ";
 	}
 	cout << endl;
 	
