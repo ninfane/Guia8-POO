@@ -5,19 +5,27 @@ using namespace std;
 
 int main() {
 	
-	list<float> a = {1,2,3,4,5};
+	list<float> l = {1,2,3,4,5};
 	
-	for(float x: a){
+	for(float x: l){
 		cout << x << " ";
 	}
 	cout << endl;
 	
-	auto it = next(a.begin());
-	float prom = accumulate(a.begin(),it,0);
-	prom = prom/2.0;
-	it = a.insert(it,prom);
+	auto it = l.begin();
+	auto it2 = next(it);
+	float aux = accumulate(it,it2,0.0)/2.0;
+	it = l.insert(it2,aux);
 	
-	for(float x: a){
+	for(int i=0;i<3;i++) { 
+		auto it2 = next(it);
+		auto it3 = next(it,2);
+		float aux = accumulate(it2,it3,0.0)/2.0;
+		it = l.insert(it3,aux);
+	}
+	
+	
+	for(float x: l){
 		cout << x << " ";
 	}
 	cout << endl;
