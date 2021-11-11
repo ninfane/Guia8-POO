@@ -1,0 +1,4 @@
+1 1 4 Argentina
+2 3 3 Estados Unidos
+0 1 0 Itali
+4 5 7 Italia

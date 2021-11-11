@@ -2,7 +2,6 @@
 #include <vector>
 using namespace std;
 
-
 struct FichaMedico {
 	string nameMed;
 	vector<int> dniPacientes;
@@ -12,8 +11,8 @@ class Clinica{
 private:
 	vector<FichaMedico> m_v;
 public:
-	Clinica(const vector<string> &med){
-		for(size_t i=0;i<med.size();i++) { 
+	void CargarMedicos(vector<string> med){
+		for(int i=0;i<6;i++) { 
 			m_v[i].nameMed = med[i];
 		}
 	}
@@ -30,18 +29,20 @@ public:
 		m_v[pos].dniPacientes.push_back(dni);
 	}
 };
+	
 
 int main() {
-	
+	/*
 	vector<string> nombres(6);
 	for(string &x: nombres){
 		cout << "Ingrese nombre medico" << endl;
 		getline(cin, x);
 	}
 	
-	Clinica osde(nombres); //constructor con nombres medicos
+	osde.CargarMedicos(nombres);*/
 	
 	//agregar un paciente
+	Clinica osde;
 	cout << "Ingrese dni paciente y numero de medico" << endl;
 	int dni, num; cin >> dni >> num;
 	osde.AgregarPaciente(num,dni);
@@ -49,10 +50,11 @@ int main() {
 	//mostrar lista de medicos y pacientes
 	osde.VerCartilla();
 	
+	/*
 	//eliminar
 	cout << "Ingrese dni del paciente a eliminar" << endl;
 	int dnie; cin >> dnie;
-	osde.EliminarPaciente(dni);
+	osde.EliminarPaciente(dni);*/
 	
 	return 0;
 }
